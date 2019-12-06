@@ -28,6 +28,29 @@ let showProducts = function () {
         for (let i = 0; i < res.length; i++) {
             showTable.push([res[i].item_id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_quantity]);
         } console.log(showTable.toString());
-        //Call the product request function here...
+        //Call the buy product function here...
+        buyProduct();
     })
 }
+let buyProduct = function () {
+    inquirer.prompt([{
+        name: "ID",
+        type: "input",
+        message: "Select a product to purchase by it's ID",
+        filter: Number
+    },
+    {
+        name: "QTY",
+        type: "input",
+        message: "How many would you like to purchase?",
+        filter: Number
+    }
+    ]).then(function (answer) {
+        let selectedID = answer.ID;
+        let orderQuantity = answer.QTY;
+        //TEST LOGS
+        console.log(selectedID)
+        console.log(orderQuantity)
+    })
+}
+
