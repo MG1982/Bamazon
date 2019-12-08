@@ -37,8 +37,8 @@ CREATE TABLE departments (
     
 INSERT INTO departments (department_id, department_name, over_head_costs)
 VALUES
-(01, "Audio", 2000),
-(02, "Computer", 1000),
+(01, "Audio", 750),
+(02, "Computer", 1200),
 (03, "Phone", 300),
 (04, "TV", 800);
 

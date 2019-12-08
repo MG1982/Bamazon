@@ -35,8 +35,8 @@
 >
 > **Manager can do the following;**
 >
-> - **view the products list.**
-> - **view the low inventory list.**
+> - **View the products list.**
+> - **View the low inventory list.**
 > - **Add to stock quantities.**
 > - **Add new products.**
 >
@@ -51,7 +51,7 @@
 >
 > **Supervisor can do the following;**
 >
-> - **view Bamazon over heads, sales and profits.**
+> - **View Bamazon over heads, sales and profits.**
 > - **Add new departments to the database table.**
 >
 > **The SQL Database will update any changes made by the Supervisor.**
@@ -66,4 +66,5 @@
 - Text editor - Visual Studio Code
 - Script language - JavaScript
 - Runtime environment - Node.js
+- Database - MySQL Workbench
 - Packages - mysql, inquirer, cli-table, chalk

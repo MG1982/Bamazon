@@ -33,7 +33,7 @@ let start = function () {
     inquirer.prompt({
         name: "manage",
         type: "list",
-        message: "Would you like to do?",
+        message: "What would you like to do?",
         choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product", "Exit"]
     }).then(function (answer) {
         switch (answer.manage) {
@@ -145,7 +145,6 @@ let addProduct = function () {
             departmentArray.push(result[i].department_name);
         }
         let choices = Array.from(new Set(departmentArray));
-        console.log(choices);
         inquirer.prompt([
             {
                 name: "item",
