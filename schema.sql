@@ -6,9 +6,10 @@ USE bamazon_DB;
 CREATE TABLE products (
   item_id INT NOT NULL AUTO_INCREMENT,
   product_name VARCHAR(40) NOT NULL,
-  department_name VARCHAR(15) NULL,
+  department_name VARCHAR(20) NULL,
   price DECIMAL(7,2) NOT NULL,
-  stock_quantity INT NOT NULL DEFAULT '1',
+  stock_quantity INT NOT NULL DEFAULT '0',
+  product_sales DECIMAL(10,2) NOT NULL DEFAULT '0',
   PRIMARY KEY (item_id)
 );
 
@@ -26,3 +27,19 @@ VALUES
 (10, "BOSE Soundbar 500", "Audio", 799.99, 827);
 
 Select * From products;
+
+CREATE TABLE departments (
+	department_id INT NOT NULL auto_increment,
+    department_name VARCHAR(20) NOT NULL,
+    over_head_costs DECIMAL(10,2) NOT NULL,
+    PRIMARY KEY (department_id)
+    );
+    
+INSERT INTO departments (department_id, department_name, over_head_costs)
+VALUES
+(01, "Audio", 2000),
+(02, "Computer", 1000),
+(03, "Phone", 300),
+(04, "TV", 800);
+
+Select * From departments;  

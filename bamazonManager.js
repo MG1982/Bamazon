@@ -136,3 +136,65 @@ let addInventory = function () {
             })
     });
 }
+
+let addProduct = function () {
+    connection.query("Select * FROM products", function (err, result) {
+        if (err) throw err;
+        let departmentArray = [];
+        for (let i = 0; i < result.length; i++) {
+            departmentArray.push(result[i].department_name);
+        }
+        let choices = Array.from(new Set(departmentArray));
+        console.log(choices);
+        inquirer.prompt([
+            {
+                name: "item",
+                type: "input",
+                message: "What is the name of the new product?"
+            },
+            {
+                name: "department",
+                type: "list",
+                message: "What department?",
+                choices: choices
+            },
+            {
+                name: "price",
+                type: "input",
+                message: "What would you like the price to be?",
+                validate: function (value) {
+                    if (isNaN(value) === false) {
+                        return true;
+                    }
+                    return false;
+                }
+
+            },
+            {
+                name: "QTY",
+                type: "input",
+                message: "How many will you be adding?",
+                validate: function (value) {
+                    if (isNaN(value) === false) {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+        ]).then(function (answer) {
+            connection.query("INSERT INTO products SET ?",
+                {
+                    product_name: answer.item,
+                    department_name: answer.department,
+                    price: answer.price || 0,
+                    stock_quantity: answer.QTY
+                },
+
+                function (err) {
+                    if (err) throw err;
+                    console.log(green("\nNew Product Successfully Created\n"));
+                    start();
+                })
+        })
+    })
+}

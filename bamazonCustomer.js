@@ -55,12 +55,12 @@ let showProducts = function () {
         if (err) throw err;
         // Cli-Table display config for products table
         let stockTable = new Table({
-            head: [cyan("Item ID"), cyan("Product Name"), cyan("Department"), cyan("Price"), cyan("Quantity")],
-            colWidths: [10, 40, 15, 15, 10]
+            head: [cyan("Item ID"), cyan("Product Name"), cyan("Price"), cyan("Quantity")],
+            colWidths: [10, 40, 15, 10]
         });
         // For loop that prints all items from database to table
         for (let i = 0; i < res.length; i++) {
-            stockTable.push([res[i].item_id, res[i].product_name, res[i].department_name, "$" + res[i].price.toFixed(2), res[i].stock_quantity]);
+            stockTable.push([res[i].item_id, res[i].product_name, "$" + res[i].price.toFixed(2), res[i].stock_quantity]);
         }
         // Logs the table to the terminal
         console.log(stockTable.toString());
@@ -112,7 +112,7 @@ let confirmStock = function (ID, amount) {
             });
             receiptTable.push([amount, res[0].product_name, "$" + res[0].price.toFixed(2), "$" + totalCost.toFixed(2)]);
             console.log(green("\nYour items are in stock.\n") + receiptTable.toString());
-            confirmPurchase(ID, amount);
+            confirmPurchase(ID, amount, totalCost);
         } else {
             console.log(red("\nSorry we dont have enough " + res[0].product_name + "'s in stock to complete your order.\n"));
             start();
@@ -120,7 +120,7 @@ let confirmStock = function (ID, amount) {
     })
 }
 // Final confirmation before proceeding with purchase and changing stock numbers in database
-let confirmPurchase = function (ID, amount) {
+let confirmPurchase = function (ID, amount, totalCost) {
     inquirer.prompt({
         name: "confirmPurchase",
         type: "list",
@@ -128,8 +128,11 @@ let confirmPurchase = function (ID, amount) {
         choices: ["Yes", "No"]
     }).then(function (answer) {
         if (answer.confirmPurchase === "Yes") {
+
             // Update stock QTY in database
             connection.query("UPDATE products SET stock_quantity = stock_quantity - " + amount + " WHERE item_id =" + ID);
+            // Add to product sales
+            connection.query("UPDATE products SET product_sales = product_sales + " + totalCost + " WHERE item_id =" + ID);
             console.log(green("\nPurchase Successful - Thank you for shopping with BAMAZON.\n\n"));
             start();
         } else {
