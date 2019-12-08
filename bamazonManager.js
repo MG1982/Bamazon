@@ -85,7 +85,7 @@ let lowInventory = function () {
             colWidths: [10, 40, 15, 15, 10]
         });
         // For loop that prints all items from database to table
-        for (i = 0; i < res.length; i++) {
+        for (let i = 0; i < res.length; i++) {
             if (res[i].stock_quantity <= 5) {
                 lowStockTable.push([res[i].item_id, res[i].product_name, res[i].department_name, "$" + res[i].price.toFixed(2), res[i].stock_quantity]);
             }
