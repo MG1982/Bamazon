@@ -17,7 +17,7 @@ const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "",
+    password: "bootcamp",
     database: "bamazon_DB"
 });
 
@@ -56,7 +56,7 @@ let start = function () {
         }
     })
 }
-
+// prints product list to a tidy looking table
 let viewProducts = function () {
     let query = "Select * FROM products";
     connection.query(query, function (err, res) {
@@ -86,6 +86,7 @@ let lowInventory = function () {
         });
         // For loop that prints all items from database to table
         for (let i = 0; i < res.length; i++) {
+            // this if statement is 
             if (res[i].stock_quantity <= 5) {
                 lowStockTable.push([res[i].item_id, res[i].product_name, res[i].department_name, "$" + res[i].price.toFixed(2), res[i].stock_quantity]);
             }
@@ -95,7 +96,7 @@ let lowInventory = function () {
         start();
     })
 }
-
+// Changes stock numbers in the database
 let addInventory = function () {
     connection.query("Select * FROM products", function (err, res) {
         if (err) throw err;
@@ -113,7 +114,7 @@ let addInventory = function () {
             {
                 name: "QTY",
                 type: "input",
-                message: "How much would you like to enter?",
+                message: "How many would you like to enter?",
                 validate: function (value) {
                     if (isNaN(value) === false) {
                         return true;
@@ -136,7 +137,7 @@ let addInventory = function () {
             })
     });
 }
-
+// Adds new product to the database
 let addProduct = function () {
     connection.query("Select * FROM products", function (err, result) {
         if (err) throw err;

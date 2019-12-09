@@ -29,7 +29,7 @@
 > **To access type into terminal:** node bamazonCustomer  
 > **[Press Enter]**  
 > **[Follow the on screen instructions]**  
-> ![Customer.Gif](./images/customer.gif "bamazonCustomer example")
+> ![Customer.Gif](./gifs/customer.gif "bamazonCustomer example") > ![Customer.jpg](./images/customerNoStock.jpg "Not Enough Stock Example") > ![Customer.jpg](./images/customerPurchase.jpg "Purchase Example")
 
 > ## Manager View
 >
@@ -45,7 +45,7 @@
 > **To access type into terminal:** node bamazonManager  
 > **[Press Enter]**  
 > **[Follow the on screen instructions]**  
-> ![Manager.Gif](./images/manager.gif "bamazonManager example")
+> ![Manager.Gif](./gifs/manager.gif "bamazonManager example") > ![Manager.jpg](./images/managerViewProducts.jpg "View Product Example") > ![Manager.jpg](./images/managerViewLow.jpg "Low Inventory Example") > ![Manager.jpg](./images/managerAddStock.jpg "Add Stock QTY Example") > ![Manager.jpg](./images/managerNewProduct.jpg "Add New Product Example")
 
 > ## Supervisor View
 >
@@ -59,7 +59,7 @@
 > **To access type into terminal:** node bamazonSupervisor  
 > **[Press Enter]**  
 > **[Follow the on screen instructions]**  
-> ![Supervisor.Gif](./images/supervisor.gif "bamazonSupervisor example")
+> ![Supervisor.Gif](./gifs/supervisor.gif "bamazonSupervisor example") > ![Supervisor.jpg](./images/supervisorViewAndNew.jpg "Add New Department and View Departments Example")
 
 ## Built With
 

@@ -18,7 +18,7 @@ const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
-    password: "",
+    password: "bootcamp",
     database: "bamazon_DB"
 });
 
@@ -51,16 +51,17 @@ let start = function () {
         }
     })
 }
+// Shows all departments sales, overheads and profits
 let viewSales = function () {
     let query = "Select departments.department_id, departments.department_name, departments.over_head_costs, IFNULL(sum(products.product_sales), 0) as product_sales, IFNULL((SUM(products.product_sales) - departments.over_head_costs), 0) as total_profit FROM products RIGHT OUTER JOIN departments on products.department_name = departments.department_name GROUP BY departments.department_id;";
     connection.query(query, function (err, res) {
         if (err) throw err;
-        // Cli-Table display config for products table
+        // Cli-Table display config for tidy table layout
         let salesTable = new Table({
             head: [yellow("Department ID"), yellow("Department Name"), yellow("Overhead Costs"), yellow("Product Sales"), yellow("Total Profit")],
             colWidths: [25, 25, 25, 25, 25]
         });
-        // For loop that prints all items from database to table
+        // For loop that prints all items from databases to table
         for (let i = 0; i < res.length; i++) {
             salesTable.push([res[i].department_id, res[i].department_name, res[i].over_head_costs, res[i].product_sales, res[i].total_profit]);
         }
@@ -69,7 +70,7 @@ let viewSales = function () {
         start();
     })
 }
-
+// adds a new department
 let newDepartment = function () {
     connection.query("Select * FROM departments", function (err, res) {
         if (err) throw err;
